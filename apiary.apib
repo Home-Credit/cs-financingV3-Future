@@ -1192,18 +1192,19 @@ Choose one of the following approaches to integrate installments calculator into
 
 ## Implementing own installments calculator
 In order to implement your own installment calculator (with your GUI design) you will need following resources:
-- `/financing/v3/installmentProgramsOffers` - to find out available installment programs offers and their details
-- `/financing/v3/installmentPrograms` - to find out details of a chosen installment program
-- `/financing/v3/installmentProgramsDownPayments` - to find out down payment options within available installment programs offers
+- `/financing/v3/installment-programs/offers` - to find out available installment programs offers and their details
+- `/financing/v3/installment-programs/down-payments` - to find out down payment options within available installment programs offers
 
-### Installment programs offers [/financing/v3/installmentProgramsOffers]
-When a customer wants to pay for a purchase by a loan and you want to show him an offer of available installment programs, use `/financing/v3/installmentProgramsOffers` resource with properly filled request that contains at least following data:
+### Installment programs offers [/financing/v3/installment-programs/offers]
+When a customer wants to pay for a purchase by a loan and you want to show him an offer of available installment programs, use `/financing/v3/installment-programs/offers` resource with properly filled request that contains at least following data:
 - Product set code (you should know the proper product set code from Home Credit's sales representative or other similar source; if you don't provide product set code, your default product set will be used)
 - Price of customer's purchase
+- Client type (in dependency on your business)
 
 If the request was successfully processed, you receive HTTP status code 200 and array of objects of available installment programs with at least following information in the response:
 - Installment program (array)
   - Installment program product code
+  - Customer types that can use the calculated offer
   - Installment program type (in case of only one installment program offer in response it is of type `FAVOURITE`)
   - Installment amount
   - Number of installments
@@ -1240,52 +1241,16 @@ feature | supported by resource
 
     + Attributes (Errors)
 
-
-### Installment programs [/financing/v3/installmentPrograms]
-When a customer wants to know details of one of previously offered installment programs use `/financing/v3/installmentPrograms` resource with properly filled request that contains at least following data:
-- Product code of given installment program
-- Price of customer's purchase
-
-If the request was successfully processed, you receive HTTP status code 200 and object of information about specified installment program with at least following information in the response:
-- Installment program type
-- Installment amount
-- Number of installments
-- Installment program details
-
-In other cases, you receive one of the following errors:
-| Status code | Code                  | Explanation                                                                      |
-| ---         | ---                   | ---                                                                              |
-| 400         | INVALID_REQUEST       | Request was not well formatted (malformed request syntax, size too large, etc.)  |
-| 422         | UNPROCESSABLE         | The request was well-formed but was unable to be followed due to semantic errors |
-| 500         | INTERNAL_SERVER_ERROR | Unexpected condition was encountered and no more specific message is suitable    |
-
-
-#### Calculate installment program detail [POST]
-Calculate installment program detailed information.
-
-It returns the installment program that most closely matches specified input.
-
-+ Request (application/json;charset=UTF-8)
-    + Attributes (InstallmentProgramsRequest)
-
-+ Response 200(application/json;charset=UTF-8)
-Detailed information about installment program
-    + Attributes (InstallmentProgramDetail)
-
-+ Response 422(application/json;charset=UTF-8)
-No installment program was found
-    + Attributes (Errors)
-
-
-### Installment programs down payments [/financing/v3/installmentProgramsDownPayments]
-When a customer wants to pay for a purchase by a loan and also wants to choose own down payments settings within offered installment programs, use `/financing/v3/installmentProgramsDownPayments` resource with properly filled request that contains at least following data:
+### Installment programs down payments [/financing/v3/installment-programs/down-payments]
+When a customer wants to pay for a purchase by a loan and also wants to choose own down payments settings within offered installment programs, use `/financing/v3/installment-programs/down-payments` resource with properly filled request that contains at least following data:
 - Product set code (you should know the proper product set code from Home Credit's sales representative or other similar source)
 - Price of customer's purchase
 
-If the request was successfully processed, you receive HTTP status code 200 and object of information about available down payments settings with at least following information in the response:
+If the request was successfully processed, you receive HTTP status code 200 and object of information about available down payments settings for each valid product set code with at least following information in the response:
 - Minimum down payment amount
 - Maximum down payment amount
 - Step between given minimum and maximum down payment amounts
+- product set code
 
 In other cases, you receive one of the following errors:
 | Status code | Code                  | Explanation                                                                      |
@@ -1443,6 +1408,8 @@ Notify partner about changes in application.
 ## AddressFlag(enum)
 + `PERMANENT` - Permanent residential address
 + `CONTACT` - Contact address
+
+## ProductSetCode(string)
 
 ## ApplicationContact(object)
 + type (enum, required) - Contact type
@@ -1784,20 +1751,15 @@ Down payments information - the lowest down payment possible, the maximum down p
     + `amount`: 250000 (number, required) - Amount in minor units (250000 represents 2500 CZK/EUR) [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
 + `step` (AmountOld, optional) - Size of one step between the lowest and maximum down payment amounts, e.g. 500 (500 CZK/EUR). Available down payments could be (min 0, max 2500): 0, 500, 1000, 1500, 2000, 2500
     + `amount`: 50000 (number, required) - Amount in minor units (50000 represents 500 CZK/EUR) [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
-
-
-## InstallmentProgramsRequest (object)
-+ `productCode`: `COCONL06` (string, required) - Product code, this indicates previous calculation result
-+ `price` (AmountOld, required) - Goods price
-+ `downPayment` (AmountOld, optional) - Down payment amount (default is 0, amount should be rounded to hundreds)
-    + `amount`: 0 (number, required) - Amount in minor units [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
++ `productSetCode`: `COCHCONL` (string, optional) - Product set code from input
 
 
 ## InstallmentProgramsOffersRequest (object)
-+ `productSetCode`: `COCHCONL` (string, optional) - Product set code, this will limit further calculations. If not provided, default productSet will be used.
++ `productSetCodes`: (array[ProductSetCode]) - List of product set codes, this will limit further calculations. If not provided, default productSet will be used.
 + `price` (AmountOld, required) - Order price
 + `downPayment` (AmountOld, optional) - Down payment amount (default is 0, amount should be rounded to hundreds)
     + `amount`: 0 (number, required) - Amount in minor units [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
++ `customerTypes`: (array[CustomerType]) - List of customer types from enum
 
 
 ## InstallmentProgramsDownPaymentsRequest (object)
@@ -1845,6 +1807,11 @@ Financial amount with VAT rate.
 + prefix: `000000` (string, optional) - Account number prefix. For domestic accounts, this will be specified in national format.
 + accountNumber: `1235335010` (string, required) - Account number. For domestic accounts, this will be specified in national format.
 + bankCode: `3030` (string, required) - For domestic accounts, bank code in national format
+
+## CustomerType (array)
+  + `PERSON` - Borrower that wants to use loan for individual purpose
+  + `ENTREPRENEUR` - Person who organizes, operates and assumes the risk of a business venture and wants to use loan for his business
+  + `LEGAL_ENTITY` - Company or organization that has legal rights and obligations
 
 ## PartnerLogin (object)
 Partner login credentials
