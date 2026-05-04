@@ -2883,10 +2883,11 @@ paths:
                   description: Down payment amount (default is 0, amount should be rounded to
                     hundreds)
                 customerTypes:
-                  type: array
-                  items:
-                    type: array
-                    items: {}
+                  type: string
+                  enum:
+                    - PERSON
+                    - ENTREPRENEUR
+                    - LEGAL_ENTITY
                   description: List of customer types from enum
               required:
                 - price
@@ -2900,7 +2901,9 @@ paths:
                   amount: 0
                   currency: CZK
                 customerTypes:
-                  - - PERSON
+                  type: string
+                  enum:
+                    - PERSON
                     - ENTREPRENEUR
                     - LEGAL_ENTITY
   /financing/v3/installment-programs/down-payments:
