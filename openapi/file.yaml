@@ -2761,7 +2761,7 @@ paths:
                   value:
                     installmentPrograms:
                       - productCode: COCONL06
-                        type: MINIMAL
+                        customerTypes: PERSON
                         flags:
                           - type: MINIMAL
                             delayFirstInstallment: 2
@@ -2883,14 +2883,17 @@ paths:
                   description: Down payment amount (default is 0, amount should be rounded to
                     hundreds)
                 customerTypes:
-                  type: string
-                  enum:
+                  type: array
+                  items:
+                    type: string
+                    enum:
                     - PERSON
                     - ENTREPRENEUR
                     - LEGAL_ENTITY
                   description: List of customer types from enum
               required:
                 - price
+                - customerTypes
               example:
                 productSetCodes:
                   - ""
@@ -2901,11 +2904,7 @@ paths:
                   amount: 0
                   currency: CZK
                 customerTypes:
-                  type: string
-                  enum:
-                    - PERSON
-                    - ENTREPRENEUR
-                    - LEGAL_ENTITY
+                  -PERSON,ENTREPRENEUR
   /financing/v3/installment-programs/down-payments:
     post:
       responses:
@@ -4288,11 +4287,13 @@ components:
           example: 6
           description: installment count
         customerTypes:
-          type: string
-          enum:
-            - PERSON
-            - ENTREPRENEUR
-            - LEGAL_ENTITY
+          type: array
+          items:
+            type: string
+            enum:
+                - PERSON
+                - ENTREPRENEUR
+                - LEGAL_ENTITY
           description: List of client types for which this installment program is calculated.
     InstallmentProgramDetail:
       allOf:
@@ -4306,13 +4307,15 @@ components:
       required:
         - type
       properties:
-        customerTypes:
+        type:
           type: string
           enum:
-            - PERSON
-            - ENTREPRENEUR
-            - DELAY_FLEGAL_ENTITY
-          description: List of client types for which this installment program is calculated.
+            - MINIMAL
+            - FAVOURITE
+            - DELAY_FIRST_INSTALLMENT
+            - BENEFIT
+            - OTHER
+          description: Flag type
         delayFirstInstallment:
           type: number
           example: 2
