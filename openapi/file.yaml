@@ -4265,11 +4265,6 @@ components:
           type: string
           example: COCONL06
           description: Installment program product code
-        customerTypes:
-          type: array
-          items:
-            $ref: "#/components/schemas/CustomerType"
-          description: List of client types for which this installment program is calculated.
         flags:
           type: array
           items:
@@ -4292,6 +4287,13 @@ components:
           type: number
           example: 6
           description: installment count
+        customerTypes:
+          type: string
+          enum:
+            - PERSON
+            - ENTREPRENEUR
+            - LEGAL_ENTITY
+          description: List of client types for which this installment program is calculated.
     InstallmentProgramDetail:
       allOf:
         - $ref: "#/components/schemas/InstallmentProgram"
@@ -4304,15 +4306,13 @@ components:
       required:
         - type
       properties:
-        type:
+        customerTypes:
           type: string
           enum:
-            - MINIMAL
-            - FAVOURITE
-            - DELAY_FIRST_INSTALLMENT
-            - BENEFIT
-            - OTHER
-          description: Flag type
+            - PERSON
+            - ENTREPRENEUR
+            - DELAY_FLEGAL_ENTITY
+          description: List of client types for which this installment program is calculated.
         delayFirstInstallment:
           type: number
           example: 2
