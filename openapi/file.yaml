@@ -4265,15 +4265,11 @@ components:
           type: string
           example: COCONL06
           description: Installment program product code
-        type:
-          type: string
-          enum:
-            - MINIMAL
-            - FAVOURITE
-            - OTHER
-          description: DEPRECATED. Do not use this attribute, use attribute `flags`
-            instead. Attribute `type` remains in the API for backward
-            compatibility
+        customerTypes:
+          type: array
+          items:
+            $ref: "#/components/schemas/CustomerType"
+          description: List of client types for which this installment program is calculated.
         flags:
           type: array
           items:
