@@ -1602,6 +1602,65 @@ paths:
                         businessName:
                           type: string
                           description: Name of business company.
+                        contacts:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              type:
+                                type: string
+                                enum:
+                                  - EMAIL
+                                  - MOBILE
+                                  - PHONE
+                                description: Contact type
+                              email:
+                                type: object
+                                properties:
+                                  value:
+                                    type: string
+                                    description: E-mail address of customer. MUST be valid email according to [RFC
+                                      2822](https://tools.ietf.org/html/rfc2822).
+                                required:
+                                  - value
+                                description: Email address of customer. REQUIRED for `EMAIL` Contact type.
+                              mobile:
+                                type: object
+                                properties:
+                                  countryCode:
+                                    type: string
+                                    description: MUST be valid countryCode.
+                                  value:
+                                    type: string
+                                    description: Mobile phone number SHOULD be 9 characters long. The mobile phone
+                                      number itself without country code SHOULD
+                                      begin with digit `6` or `7` (for CZ) or
+                                      with `9x` where `x` is different from `6`
+                                      (for SK).
+                                required:
+                                  - value
+                                description: Number of customer's mobile phone. REQUIRED for `MOBILE_PHONE`
+                                  Contact type.
+                              phone:
+                                type: object
+                                properties:
+                                  countryCode:
+                                    type: string
+                                    description: MUST be valid countryCode.
+                                  value:
+                                    type: string
+                                    description: Mobile phone number SHOULD be 9 characters long. The mobile phone
+                                      number itself without country code SHOULD
+                                      begin with digit `6` or `7` (for CZ) or
+                                      with `9x` where `x` is different from `6`
+                                      (for SK).
+                                required:
+                                  - value
+                                description: Number of customer's landline phone. REQUIRED for `PHONE` Contact
+                                  type.
+                            required:
+                              - type
+                          description: Contacts of entrepreneur.
                         addresses:
                           type: array
                           items:
@@ -1651,6 +1710,18 @@ paths:
                             - key
                             - value
                           description: Fingerprints components.
+                        representatives: 
+                          type: array
+                          items:
+                              type: object
+                              properties:
+                                firstName:
+                                    type: string
+                                    description: Customer’s given name.
+                                lastName:
+                                    type: string
+                                    description: Customer’s last (family) name.
+                          description: Client representatives info.
                       description: REQUIRED for `ENTREPRENEUR` Customer type. If known, customer data
                         MAY be included for a smoother approval process for
                         defined type of customer
@@ -1660,6 +1731,65 @@ paths:
                         businessName:
                           type: string
                           description: Name of business company.
+                        contacts:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              type:
+                                type: string
+                                enum:
+                                  - EMAIL
+                                  - MOBILE
+                                  - PHONE
+                                description: Contact type
+                              email:
+                                type: object
+                                properties:
+                                  value:
+                                    type: string
+                                    description: E-mail address of customer. MUST be valid email according to [RFC
+                                      2822](https://tools.ietf.org/html/rfc2822).
+                                required:
+                                  - value
+                                description: Email address of customer. REQUIRED for `EMAIL` Contact type.
+                              mobile:
+                                type: object
+                                properties:
+                                  countryCode:
+                                    type: string
+                                    description: MUST be valid countryCode.
+                                  value:
+                                    type: string
+                                    description: Mobile phone number SHOULD be 9 characters long. The mobile phone
+                                      number itself without country code SHOULD
+                                      begin with digit `6` or `7` (for CZ) or
+                                      with `9x` where `x` is different from `6`
+                                      (for SK).
+                                required:
+                                  - value
+                                description: Number of customer's mobile phone. REQUIRED for `MOBILE_PHONE`
+                                  Contact type.
+                              phone:
+                                type: object
+                                properties:
+                                  countryCode:
+                                    type: string
+                                    description: MUST be valid countryCode.
+                                  value:
+                                    type: string
+                                    description: Mobile phone number SHOULD be 9 characters long. The mobile phone
+                                      number itself without country code SHOULD
+                                      begin with digit `6` or `7` (for CZ) or
+                                      with `9x` where `x` is different from `6`
+                                      (for SK).
+                                required:
+                                  - value
+                                description: Number of customer's landline phone. REQUIRED for `PHONE` Contact
+                                  type.
+                            required:
+                              - type
+                          description: Contacts of legal entity.
                         addresses:
                           type: array
                           items:
@@ -1709,6 +1839,18 @@ paths:
                             - key
                             - value
                           description: Fingerprints components.
+                        representatives: 
+                          type: array
+                          items:
+                              type: object
+                              properties:
+                                firstName:
+                                    type: string
+                                    description: Customer’s given name.
+                                lastName:
+                                    type: string
+                                    description: Customer’s last (family) name.
+                          description: Client representatives info.
                       description: REQUIRED for `LEGAL_ENTITY` Customer type. If known, customer data
                         MAY be included for a smoother approval process for
                         defined type of customer
@@ -2276,6 +2418,16 @@ paths:
                       value: value
                   entrepreneur:
                     businessName: Planeta s.r.o.
+                    contacts:
+                      - type: EMAIL
+                        email:
+                          value: john.newborn@country.com
+                        mobile:
+                          countryCode: "+420"
+                          value: "777123456"
+                        phone:
+                          countryCode: "+420"
+                          value: "777123456"
                     addresses:
                       - city: Prague
                         streetAddress: Letenská
@@ -2288,8 +2440,21 @@ paths:
                     fingerprintComponents:
                       key: property
                       value: value
+                    representatives:
+                     - firstName: František
+                       lastName: Novák
                   legalEntity:
                     businessName: Planeta s.r.o.
+                    contacts:
+                      - type: EMAIL
+                        email:
+                          value: john.newborn@country.com
+                        mobile:
+                          countryCode: "+420"
+                          value: "777123456"
+                        phone:
+                          countryCode: "+420"
+                          value: "777123456"
                     addresses:
                       - city: Prague
                         streetAddress: Letenská
@@ -2302,6 +2467,9 @@ paths:
                     fingerprintComponents:
                       key: property
                       value: value
+                    representatives:
+                      - firstName: František
+                        lastName: Novák
                 originationContext:
                   channel:
                     type: ONLINE
