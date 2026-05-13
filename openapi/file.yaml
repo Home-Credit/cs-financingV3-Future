@@ -2924,14 +2924,10 @@ paths:
             application/json;charset=UTF-8:
               schema:
                 $ref: "#/components/schemas/InstallmentProgramsOffersResponseV3"
-        "201":
-          description: Created
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
       summary: Calculate installment program offers
       operationId: calculateInstallmentProgramsUsingPOST_2
       description: >-
@@ -2979,14 +2975,10 @@ paths:
             application/json;charset=UTF-8:
               schema:
                 $ref: "#/components/schemas/InstallmentProgramsDownPaymentsResponseV3"
-        "201":
-          description: Created
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
       summary: Calculate available down payments for installment programs
       operationId: calculateInstallmentProgramDownPaymentsUsingPOST_2
       description: >-
@@ -3302,7 +3294,7 @@ tags:
 
       To check the availability of back-end services use the [health check resource](#reference/health-check/health-check).
   - name: Installments calculator resources
-    description: >-
+    description: |-
       When you want to provide your customer (that wants to pay for a purchase
       by a loan) an option to choose from available installment programs while
       he is still on your website, it is necessary to implement "installments
