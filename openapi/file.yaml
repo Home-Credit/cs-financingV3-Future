@@ -1276,7 +1276,7 @@ paths:
       responses:
         "200":
           description: Partner acces token issued
-          headers: {}
+          headers: { }
           content:
             application/json; charset=utf-8:
               schema:
@@ -1289,7 +1289,7 @@ paths:
                     tokentype: bearer
         "400":
           description: Unable to authenticate partner
-          headers: {}
+          headers: { }
           content:
             application/json; charset=utf-8:
               schema:
@@ -1331,7 +1331,7 @@ paths:
       responses:
         "200":
           description: Application was created in the past (nothing changed)
-          headers: {}
+          headers: { }
           content:
             application/json;charset=UTF-8:
               schema:
@@ -1349,7 +1349,7 @@ paths:
                           gatewayRedirectUrl: https://nasplatky.homecredit.cz
         "201":
           description: Application was created
-          headers: {}
+          headers: { }
           content:
             application/json;charset=UTF-8:
               schema:
@@ -1367,7 +1367,7 @@ paths:
                           gatewayRedirectUrl: https://nasplatky.homecredit.cz
         "400":
           description: There was an error processing request - invalid financedSubject.type
-          headers: {}
+          headers: { }
           content:
             application/json;charset=UTF-8:
               schema:
@@ -1713,14 +1713,14 @@ paths:
                         representatives:
                           type: array
                           items:
-                              type: object
-                              properties:
-                                firstName:
-                                    type: string
-                                    description: Customer’s given name.
-                                lastName:
-                                    type: string
-                                    description: Customer’s last (family) name.
+                            type: object
+                            properties:
+                              firstName:
+                                type: string
+                                description: Customer’s given name.
+                              lastName:
+                                type: string
+                                description: Customer’s last (family) name.
                           description: Client representatives info.
                       description: REQUIRED for `ENTREPRENEUR` Customer type. If known, customer data
                         MAY be included for a smoother approval process for
@@ -1842,14 +1842,14 @@ paths:
                         representatives:
                           type: array
                           items:
-                              type: object
-                              properties:
-                                firstName:
-                                    type: string
-                                    description: Customer’s given name.
-                                lastName:
-                                    type: string
-                                    description: Customer’s last (family) name.
+                            type: object
+                            properties:
+                              firstName:
+                                type: string
+                                description: Customer’s given name.
+                              lastName:
+                                type: string
+                                description: Customer’s last (family) name.
                           description: Client representatives info.
                       description: REQUIRED for `LEGAL_ENTITY` Customer type. If known, customer data
                         MAY be included for a smoother approval process for
@@ -1982,8 +1982,7 @@ paths:
                           properties:
                             value:
                               type: number
-                              description: Amount in minor units (13300 represents 133) [ISO
-                                4217](https://en.wikipedia.org/wiki/ISO_4217)
+                              description: Amount in minor units (13300 represents 133)
                             currency:
                               type: string
                               description: Amount currency [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
@@ -1998,8 +1997,7 @@ paths:
                           properties:
                             value:
                               type: number
-                              description: Amount in minor units (13300 represents 133) [ISO
-                                4217](https://en.wikipedia.org/wiki/ISO_4217)
+                              description: Amount in minor units (13300 represents 133)
                             currency:
                               type: string
                               description: Amount currency [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
@@ -2026,8 +2024,7 @@ paths:
                                 properties:
                                   value:
                                     type: number
-                                    description: Amount in minor units (13300 represents 133) [ISO
-                                      4217](https://en.wikipedia.org/wiki/ISO_4217)
+                                    description: Amount in minor units (13300 represents 133)
                                   currency:
                                     type: string
                                     description: Amount currency [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
@@ -2050,8 +2047,7 @@ paths:
                                     properties:
                                       value:
                                         type: number
-                                        description: Amount in minor units (13300 represents 133) [ISO
-                                          4217](https://en.wikipedia.org/wiki/ISO_4217)
+                                        description: Amount in minor units (13300 represents
                                       currency:
                                         type: string
                                         description: Amount currency [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
@@ -2142,8 +2138,7 @@ paths:
                                     properties:
                                       value:
                                         type: number
-                                        description: Amount in minor units (13300 represents 133) [ISO
-                                          4217](https://en.wikipedia.org/wiki/ISO_4217)
+                                        description: Amount in minor units (13300 represents 133)
                                       currency:
                                         type: string
                                         description: Amount currency [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
@@ -2158,8 +2153,7 @@ paths:
                                     properties:
                                       value:
                                         type: number
-                                        description: Amount in minor units (13300 represents 133) [ISO
-                                          4217](https://en.wikipedia.org/wiki/ISO_4217)
+                                        description: Amount in minor units (13300 represents 133)
                                       currency:
                                         type: string
                                         description: Amount currency [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
@@ -2305,8 +2299,7 @@ paths:
                                           properties:
                                             value:
                                               type: number
-                                              description: Amount in minor units (13300 represents 133) [ISO
-                                                4217](https://en.wikipedia.org/wiki/ISO_4217)
+                                              description: Amount in minor units (13300 represents 133)
                                             currency:
                                               type: string
                                               description: Amount currency [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
@@ -2322,8 +2315,7 @@ paths:
                                           properties:
                                             value:
                                               type: number
-                                              description: Amount in minor units (13300 represents 133) [ISO
-                                                4217](https://en.wikipedia.org/wiki/ISO_4217)
+                                              description: Amount in minor units (13300 represents 133)
                                             currency:
                                               type: string
                                               description: Amount currency [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
@@ -2441,8 +2433,8 @@ paths:
                       key: property
                       value: value
                     representatives:
-                     - firstName: František
-                       lastName: Novák
+                      - firstName: František
+                        lastName: Novák
                   legalEntity:
                     businessName: Planeta s.r.o.
                     contacts:
@@ -2477,7 +2469,7 @@ paths:
                       approvedRedirect: https://www.partnereshop.cz
                       rejectedRedirect: https://www.partnereshop.cz/kosik
                       notificationEndpoint: https://www.partnereshop.cz/order/AA234
-                  precheckIds: []
+                  precheckIds: [ ]
                   sourceId: Cash_10_2020
                   extendedData:
                     - key: property
@@ -2559,10 +2551,10 @@ paths:
       responses:
         "204":
           description: No Content
-          headers: {}
+          headers: { }
         "422":
           description: Status change can not be processed
-          headers: {}
+          headers: { }
           content:
             application/json;charset=UTF-8:
               schema:
@@ -2630,10 +2622,10 @@ paths:
       responses:
         "204":
           description: No Content
-          headers: {}
+          headers: { }
         "422":
           description: Status change can not be processed
-          headers: {}
+          headers: { }
           content:
             application/json;charset=UTF-8:
               schema:
@@ -2700,10 +2692,10 @@ paths:
       responses:
         "200":
           description: OK
-          headers: {}
+          headers: { }
         "422":
           description: Status change can not be processed
-          headers: {}
+          headers: { }
           content:
             application/json;charset=UTF-8:
               schema:
@@ -2799,14 +2791,14 @@ paths:
       responses:
         "200":
           description: OK
-          headers: {}
+          headers: { }
           content:
             application/json;charset=UTF-8:
               schema:
                 $ref: "#/components/schemas/GetApplicationDetail"
         "422":
           description: Status change can not be processed
-          headers: {}
+          headers: { }
           content:
             application/json;charset=UTF-8:
               schema:
@@ -2863,7 +2855,7 @@ paths:
       responses:
         "200":
           description: API is up and running
-          headers: {}
+          headers: { }
           content:
             application/json;charset=UTF-8:
               schema:
@@ -2876,7 +2868,7 @@ paths:
                     vatRate: 15
         "500":
           description: "    Error in processing request"
-          headers: {}
+          headers: { }
           content:
             application/json;charset=UTF-8:
               schema:
@@ -2919,7 +2911,7 @@ paths:
       responses:
         "200":
           description: OK
-          headers: {}
+          headers: { }
           content:
             application/json;charset=UTF-8:
               schema:
@@ -2970,7 +2962,7 @@ paths:
       responses:
         "200":
           description: OK
-          headers: {}
+          headers: { }
           content:
             application/json;charset=UTF-8:
               schema:
@@ -3018,10 +3010,10 @@ paths:
       responses:
         "204":
           description: No Content
-          headers: {}
+          headers: { }
         "500":
           description: "    Error in processing request"
-          headers: {}
+          headers: { }
           content:
             application/json;charset=UTF-8:
               schema:
@@ -3076,10 +3068,10 @@ paths:
       responses:
         "204":
           description: No Content
-          headers: {}
+          headers: { }
         "400":
           description: Bad Request
-          headers: {}
+          headers: { }
       summary: Application notification
       operationId: Application notification
       description: >-
@@ -4122,8 +4114,7 @@ components:
         value:
           type: number
           example: 13300
-          description: Amount in minor units (13300 represents 133) [ISO
-            4217](https://en.wikipedia.org/wiki/ISO_4217)
+          description: Amount in minor units (13300 represents 133)
         currency:
           type: string
           example: CZK
@@ -4132,7 +4123,7 @@ components:
             Slovakia).
     VatAmount:
       type: object
-      properties: {}
+      properties: { }
     ScoringData:
       type: object
       required:
@@ -4276,8 +4267,6 @@ components:
           description: Array with installment programs offer
     InstallmentProgram:
       type: object
-      required:
-        - productCode
       properties:
         productCode:
           type: string
@@ -4310,9 +4299,9 @@ components:
           items:
             type: string
             enum:
-                - PERSON
-                - ENTREPRENEUR
-                - LEGAL_ENTITY
+              - PERSON
+              - ENTREPRENEUR
+              - LEGAL_ENTITY
           description: List of client types for which this installment program is calculated.
     InstallmentProgramDetail:
       allOf:
@@ -4434,10 +4423,6 @@ components:
           description: "Size of one step between the lowest and maximum down payment
             amounts, e.g. 500 (500 CZK/EUR). Available down payments could be
             (min 0, max 2500): 0, 500, 1000, 1500, 2000, 2500"
-        productSetCode:
-          type: string
-          example: COCHCONL
-          description: Product set code from input
     InstallmentProgramsOffersRequest:
       type: object
       required:
@@ -4641,10 +4626,10 @@ components:
             Slovakia).
     VatAmountOld:
       type: object
-      properties: {}
+      properties: { }
     EmptyRE:
       type: object
-      properties: {}
+      properties: { }
     KeyValue:
       type: object
       required:
@@ -4701,7 +4686,7 @@ components:
           description: For domestic accounts, bank code in national format
     CustomerType:
       type: array
-      items: {}
+      items: { }
     PartnerLogin:
       type: object
       required:
@@ -4734,14 +4719,14 @@ components:
           type: string
           example: bearer
           description: token type. Always "bearer".
-    Login_partner: {}
-    Create_application: {}
-    Mark_order_as_shipped: {}
-    Mark_order_as_delivered: {}
-    Cancel_application: {}
-    Get_application_detail: {}
-    API_status_check: {}
-    Installment_programs_offers: {}
-    Installment_programs_down_payments: {}
-    API_health_check: {}
-    Application_notification: {}
+    Login_partner: { }
+    Create_application: { }
+    Mark_order_as_shipped: { }
+    Mark_order_as_delivered: { }
+    Cancel_application: { }
+    Get_application_detail: { }
+    API_status_check: { }
+    Installment_programs_offers: { }
+    Installment_programs_down_payments: { }
+    API_health_check: { }
+    Application_notification: { }
