@@ -679,6 +679,7 @@ info:
                   "currency": "string"
                 },
                 "productCode": "string",
+                "productSetCode": "string",
                 "flags": ["BUYBACK"]
               }
             }
@@ -891,7 +892,8 @@ info:
       "type": "INSTALLMENT",
       "settingsInstallment": {
         "preferredMonths": 6,
-        "productCode": "COCONL06"
+        "productCode": "COCONL06",
+        "productSetCode": "HCONL1072"
       },
       "merchantUrls": {
         "approvedRedirect": "https://...",
@@ -921,7 +923,8 @@ info:
             "type": "INSTALLMENT",
             "installment": {
               "preferredMonths": 6,
-              "productCode": "COCONL06"
+              "productCode": "COCONL06",
+              "productSetCode": "HCONL1072"
             }
           }],
           "standard": {
@@ -2061,6 +2064,9 @@ paths:
                                   productCode:
                                     type: string
                                     description: Product code (obtained from calculation result).
+                                  productSetCode:
+                                    type: string
+                                    description: Code of product set (obtained from calculation result).
                                   flags:
                                     type: array
                                     items:
@@ -2497,7 +2503,8 @@ paths:
                           preferredInstallment:
                             value: 13300
                             currency: CZK
-                          productCode: "'COCONL06'"
+                          productCode: "COCONL06"
+                          productSetCode: "HCONL1072"
                           flags:
                             - BUYBACK
                     standard:
@@ -3761,8 +3768,12 @@ components:
           $ref: "#/components/schemas/Amount"
         productCode:
           type: string
-          example: "'COCONL06'"
+          example: "COCONL06"
           description: Product code (obtained from calculation result).
+        productSetCode:
+          type: string
+          example: "HCONL1072"
+          description: Code of product set (obtained from calculation result).  
         flags:
           type: array
           items:
