@@ -1078,10 +1078,10 @@ info:
     ##### Checksum migration (critical)
 
 
-    Checksum input string depends on `RETURN_URL` version:
+    Checksum input string depends on API version:
 
 
-    - For `RETURN_URL` using v1/v2:
+    - For v1/v2:
 
 
       - format: `#orderNumber:#stateReason`
@@ -1090,7 +1090,7 @@ info:
       - example: `018884:PROCESSING_SIGNED`
 
 
-    - For `RETURN_URL` using v3:
+    - For v3:
 
 
       - format: `#applicationId:#applicationStatus:#orderNumber:#orderStatus:#downPayment`
