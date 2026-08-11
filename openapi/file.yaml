@@ -1102,7 +1102,7 @@ info:
       - example (without down payment): `b452a713-3052-4b86-9b53-918e3abc5988:CONFIRMED:449890:IN_PROCESS:0`
 
 
-    `downPayment` in checksum input is in minor units (e.g. cents/haléře).
+    `downPayment` in checksum input is in minor units (e.g. cents).
 
 
     ### 3. Lifecycle operation changes
