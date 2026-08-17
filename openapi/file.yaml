@@ -65,10 +65,8 @@ info:
         - Home Credit does not start the process of financial compensation unless the `order` is marked as `SHIPPED` or `DELIVERED` .
 
     <!-- diagram minimální implementace -->
-
-
-    <!-- stavový diagram žádosti / objednávky -->
-
+    
+    [![State diagram of Application](https://github.com/Home-Credit/cs-financingV3-Future/blob/0fec5be0adf84f371b479bbb3cadf51bc80f0086/resources/state-diagram-of-application-order-status.png)](https://github.com/Home-Credit/cs-financingV3-Future/blob/0fec5be0adf84f371b479bbb3cadf51bc80f0086/resources/state-diagram-of-application-order-status.png)
 
     It is necessary to fill in all attributes marked as 'required' in the request. Filling optional parameters will result in a better application approval rate. Partner should always consider filling as many attributes as possible.
 
