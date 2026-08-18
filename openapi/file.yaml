@@ -582,7 +582,7 @@ info:
           "fullName": "string",
           "contacts": [
             {
-              "type": "EMAIL|MOBILE|PHONE",
+              "contactType": "EMAIL|MOBILE|PHONE",
               "email": {
                 "value": "string"
               },
@@ -831,11 +831,11 @@ info:
           "lastName": "Newborn",
           "contacts": [
             {
-              "type": "EMAIL",
+              "contactType": "EMAIL",
               "email": { "value": "john@example.com" }
             },
             {
-              "type": "MOBILE",
+              "contactType": "MOBILE",
               "mobile": { 
                 "countryCode": "+420",
                 "value": "777123456" 
@@ -1578,7 +1578,7 @@ paths:
                           items:
                             type: object
                             properties:
-                              type:
+                              contactType:
                                 type: string
                                 enum:
                                   - EMAIL
@@ -1697,7 +1697,7 @@ paths:
                           items:
                             type: object
                             properties:
-                              type:
+                              contactType:
                                 type: string
                                 enum:
                                   - EMAIL
@@ -1826,7 +1826,7 @@ paths:
                           items:
                             type: object
                             properties:
-                              type:
+                              contactType:
                                 type: string
                                 enum:
                                   - EMAIL
@@ -2480,7 +2480,7 @@ paths:
                     lastName: Newborn
                     fullName: Ing. John Newborn, Csc.
                     contacts:
-                      - type: EMAIL
+                      - contactType: EMAIL
                         email:
                           value: john.newborn@country.com
                         mobile:
@@ -2504,7 +2504,7 @@ paths:
                   entrepreneur:
                     businessName: Planeta s.r.o.
                     contacts:
-                      - type: EMAIL
+                      - contactType: EMAIL
                         email:
                           value: john.newborn@country.com
                         mobile:
@@ -2531,7 +2531,7 @@ paths:
                   legalEntity:
                     businessName: Planeta s.r.o.
                     contacts:
-                      - type: EMAIL
+                      - contactType: EMAIL
                         email:
                           value: john.newborn@country.com
                         mobile:
