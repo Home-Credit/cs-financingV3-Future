@@ -4817,14 +4817,3 @@ components:
           type: string
           example: bearer
           description: token type. Always "bearer".
-    Login_partner: { }
-    Create_application: { }
-    Mark_order_as_shipped: { }
-    Mark_order_as_delivered: { }
-    Cancel_application: { }
-    Get_application_detail: { }
-    API_status_check: { }
-    Installment_programs_offers: { }
-    Installment_programs_down_payments: { }
-    API_health_check: { }
-    Application_notification: { }
