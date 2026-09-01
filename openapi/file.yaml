@@ -4378,15 +4378,6 @@ components:
         installment:
           allOf:
             - $ref: "#/components/schemas/Amount"
-            - type: object
-              required:
-                - value
-              properties:
-                value:
-                  type: number
-                  example: 221900
-                  description: Amount in minor units (250000 represents 2500 CZK/EUR) [ISO
-                    4217](https://en.wikipedia.org/wiki/ISO_4217)
           description: monthly installment amount
         numberOfInstallments:
           type: number
@@ -4457,15 +4448,6 @@ components:
         paidBack:
           allOf:
             - $ref: "#/components/schemas/Amount"
-            - type: object
-              required:
-                - value
-              properties:
-                value:
-                  type: number
-                  example: 1331400
-                  description: Amount in minor units (250000 represents 2500 CZK/EUR) [ISO
-                    4217](https://en.wikipedia.org/wiki/ISO_4217)
           description: Total amount paid by customer
         rpsn:
           type: number
@@ -4484,40 +4466,14 @@ components:
         minimum:
           allOf:
             - $ref: "#/components/schemas/Amount"
-            - type: object
-              required:
-                - value
-              properties:
-                value:
-                  type: number
-                  description: Amount in minor units [ISO
-                    4217](https://en.wikipedia.org/wiki/ISO_4217)
           description: The lowest down payment amount, e.g. 0 (0 CZK/EUR)
         maximum:
           allOf:
             - $ref: "#/components/schemas/Amount"
-            - type: object
-              required:
-                - value
-              properties:
-                value:
-                  type: number
-                  example: 250000
-                  description: Amount in minor units (250000 represents 2500 CZK/EUR) [ISO
-                    4217](https://en.wikipedia.org/wiki/ISO_4217)
           description: Maximum down payment amount, e.g. 2500 (2 500 CZK/EUR)
         step:
           allOf:
             - $ref: "#/components/schemas/Amount"
-            - type: object
-              required:
-                - value
-              properties:
-                value:
-                  type: number
-                  example: 50000
-                  description: Amount in minor units (50000 represents 500 CZK/EUR) [ISO
-                    4217](https://en.wikipedia.org/wiki/ISO_4217)
           description: "Size of one step between the lowest and maximum down payment
             amounts, e.g. 500 (500 CZK/EUR). Available down payments could be
             (min 0, max 2500): 0, 500, 1000, 1500, 2000, 2500"
@@ -4537,14 +4493,6 @@ components:
         downPayment:
           allOf:
             - $ref: "#/components/schemas/AmountOld"
-            - type: object
-              required:
-                - amount
-              properties:
-                amount:
-                  type: number
-                  description: Amount in minor units [ISO
-                    4217](https://en.wikipedia.org/wiki/ISO_4217)
           description: Down payment amount (default is 0, amount should be rounded to
             hundreds)
         customerTypes:
@@ -4573,8 +4521,7 @@ components:
         price:
           allOf:
             - $ref: "#/components/schemas/Amount"
-            - type: object
-              description: Total price of the goods
+          description: Total price of the goods
         productSetCodes:
           type: array
           example:
@@ -4626,13 +4573,11 @@ components:
         downPayment:
           allOf:
             - $ref: "#/components/schemas/Amount"
-            - type: object
-              description: Down payment amount (default is 0)
+          description: Down payment amount (default is 0)
         price:
           allOf:
             - $ref: "#/components/schemas/Amount"
-            - type: object
-              description: Total price of the goods
+          description: Total price of the goods
         productSetCodes:
           type: array
           example:
