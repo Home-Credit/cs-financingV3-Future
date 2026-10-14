@@ -992,7 +992,7 @@ info:
 
     | `REJECTED` | `REJECTED` | `REJECTED` |
 
-    | `CANCELLED` | `CANCELLED_NOT_PAID` | `CANCELLED` + order `CANCELLED` |
+    | `CANCELLED` | `CANCELLED_NOT_PAID` | `CANCELLED` + order `CANCELED` |
 
     | `CANCELLED` | `CANCELLED_RETURNED` | `CANCELLED` + order `TERMINATED` |
 
@@ -1205,7 +1205,7 @@ info:
     - `CONFIRMED` + any except `PAID`
 
 
-    - `CANCELLED` + `CANCELLED` (idempotent)
+    - `CANCELLED` + `CANCELED` (idempotent)
 
 
     #### 3.5 Order modification
@@ -1506,7 +1506,7 @@ paths:
 
         If the request contained `ApplicationRequest.financedSubject.order.number` and was **recognized as duplication**
 
-        - and previously created `Application` is canceled (`Application.status = CANCELLED` and `Application.financedSubject.order.status = CANCELLED`), new `Application` is created, HTTP status code 201 is returned with `Application` object with information specified above in the response
+        - and previously created `Application` is canceled (`Application.status = CANCELLED` and `Application.financedSubject.order.status = CANCELED`), new `Application` is created, HTTP status code 201 is returned with `Application` object with information specified above in the response
 
         - and previously created `Application` is still not in process by customer (without any recorded action by a customer), no new `Application` is created, HTTP status code 200 is returned with `Application` object with information about application created during the first related successful resource call.
 
