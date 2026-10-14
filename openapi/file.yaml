@@ -2828,7 +2828,7 @@ paths:
 
         | `CONFIRMED`        | any except `PAID`  |
 
-        | `CANCELLED`        | `CANCELLED`  (in this case nothing changes)  |
+        | `CANCELLED`        | `CANCELED`  (in this case nothing changes)  |
 
 
         If the request was successfully processed, HTTP status code 200 is returned.
@@ -3180,9 +3180,9 @@ paths:
 
         | Application was approved (approval process is proceeding correctly) | APPROVED                           | IN_PROCESS                                               | Do not cancel customer's order prematurely                             |
 
-        | Application was rejected                                            | REJECTED                           | CANCELLED                                                | You should probably cancel respective order and release reserved goods |
+        | Application was rejected                                            | REJECTED                           | CANCELED                                                | You should probably cancel respective order and release reserved goods |
 
-        | Application was cancelled (before delivery)                         | CANCELLED                          | CANCELLED                                                | You should probably cancel respective order and release reserved goods |
+        | Application was cancelled (before delivery)                         | CANCELLED                          | CANCELED                                                | You should probably cancel respective order and release reserved goods |
 
         | Order to dispatch (we commit to finance customer's order)           | CONFIRMED                          | TO_SHIP                                                  | Dispatch the order to the customer                                     |
 
@@ -3252,7 +3252,7 @@ paths:
                         - CHECKING_DELIVERY
                         - DELIVERED
                         - PAID
-                        - CANCELLED
+                        - CANCELED
                         - TERMINATED
                       description: Status of the Order
                     downPayment:
@@ -4064,7 +4064,7 @@ components:
             - CHECKING_DELIVERY
             - DELIVERED
             - PAID
-            - CANCELLED
+            - CANCELED
             - TERMINATED
           description: Status of the Order
     NotificationRequest:
@@ -4122,7 +4122,7 @@ components:
             - CHECKING_DELIVERY
             - DELIVERED
             - "`PAID` Order has been paid to partner"
-            - CANCELLED
+            - CANCELED
             - TERMINATED
           description: Status of the Order
         downPayment:
