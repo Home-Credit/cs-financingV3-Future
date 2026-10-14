@@ -1506,11 +1506,11 @@ paths:
 
         If the request contained `ApplicationRequest.financedSubject.order.number` and was **recognized as duplication**
 
-        - and previously created `Application` is canceled (`Application.status = CANCELLED` and `Application.financedSubject.order.status = CANCELED`), new `Application` is created, HTTP status code 201 is returned with `Application` object with information specified above in the response
+        - and previously created `Application` is cancelled (`Application.status = CANCELLED` and `Application.financedSubject.order.status = CANCELED`), new `Application` is created, HTTP status code 201 is returned with `Application` object with information specified above in the response
 
         - and previously created `Application` is still not in process by customer (without any recorded action by a customer), no new `Application` is created, HTTP status code 200 is returned with `Application` object with information about application created during the first related successful resource call.
 
-        - and previously created `Application` is neither canceled nor new anymore, HTTP status code 422 is returned with error code `DUPLICATE_ORDER_NUMBER`.
+        - and previously created `Application` is neither cancelled nor new anymore, HTTP status code 422 is returned with error code `DUPLICATE_ORDER_NUMBER`.
 
 
         In case of an error, you receive one of the following results:
