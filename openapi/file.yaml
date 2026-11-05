@@ -329,7 +329,7 @@ info:
       - day of week is represented as number 1..7, with 1 being Monday
       - week no. 1 is the week with the year's first Thursday in it
 
-    - **phone numbers** uses international format starting with '+' and including country code (example of valid number: `+420739111222`)
+    - **phone numbers** consist of two separate values: the country code (`countryCode`, e.g. `+420`) and the 9-digit number that follows it (`value`, e.g. `739111222`)
 
 
     - **numbers format** number format is defined by [JSON standard](http://www.json.org), e.g. decimals are separated by `.`
@@ -1102,6 +1102,15 @@ info:
 
 
     `downPayment` in checksum input is in minor units (e.g. cents).
+
+
+    The checksum is calculated as HMAC with the SHA512 algorithm over the input string, using the partner's secret key. The result is sent as an uppercase hexadecimal string in the `checksum` attribute (in v1/v2 it was `checkSum`).
+
+
+    - example: secret key `example-secret-key`, input `b452a713-3052-4b86-9b53-918e3abc5988:CONFIRMED:449890:IN_PROCESS:100000`, resulting checksum:
+
+
+      `020376B0EF7820D65703BF73C24F3AA588C26EA544EBA9E4DC62B80BA30DDFE3919B4881B523E76D6EFE4957F6D3CF537268D07FBAD51A2C4BC0D09E22EC16BF`
 
 
     ### 3. Lifecycle operation changes
@@ -2944,62 +2953,6 @@ paths:
           example: 123e4567-e89b-12d3-a456-426655440000
           schema:
             type: string
-  /info:
-    get:
-      responses:
-        "200":
-          description: API is up and running
-          headers: { }
-          content:
-            application/json;charset=UTF-8:
-              schema:
-                $ref: "#/components/schemas/ApiInfo"
-              examples:
-                response:
-                  value:
-                    value: 14950
-                    currency: CZK
-                    vatRate: 15
-        "500":
-          description: "    Error in processing request"
-          headers: { }
-          content:
-            application/json;charset=UTF-8:
-              schema:
-                $ref: "#/components/schemas/Errors"
-              examples:
-                response:
-                  value:
-                    errors:
-                      - code: BAD_REQUEST
-                        message: Bad request
-                        severity: ERROR
-                        attribute: customer.addresses[1].streetNumber
-                        ticketId: UAT1:AMS:20160516-091658.450:45e4
-      summary: API status check
-      operationId: API status check
-      description: >-
-        If the API is up and running, you receive HTTP status code 204 and
-        object of information about it.
-
-
-        In other cases, you receive one of the following errors:
-
-        | Status code | Code                  |
-
-        | ---         | ---                   |
-
-        | 406         | NOT_ACCEPTABLE        |
-
-        | 500         | INTERNAL_SERVER_ERROR |
-
-
-        > Note: resource DOES NOT require valid *access_token* in the HTTP header of the request
-
-
-        Get current state of the API
-      tags:
-        - Health check
   /financing/v3/installment-programs/offers:
     post:
       responses:
@@ -4619,28 +4572,6 @@ components:
           example: COCHCONL
           description: Product set code
       title: CalculatedInstallmentPrograms
-    ApiInfo:
-      type: object
-      required:
-        - value
-        - currency
-        - vatRate
-      properties:
-        value:
-          type: number
-          example: 14950
-          description: Amount in minor units (14950 represents 149,50) [ISO
-            4217](https://en.wikipedia.org/wiki/ISO_4217). MUST be 0 or greater.
-        currency:
-          type: string
-          example: CZK
-          description: Amount currency [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-            Only local currency is allowed (CZK in Czech Republic and EUR in
-            Slovakia).
-        vatRate:
-          type: number
-          example: 15
-          description: VAT rate as natural number (15 represents 15% rate)
     File:
       type: object
       required:
