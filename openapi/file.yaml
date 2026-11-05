@@ -4762,3 +4762,4 @@ components:
           type: string
           example: bearer
           description: token type. Always "bearer".
+# Technicka uprava 2026-11-05: znovunasadenie dokumentacie, bez zmeny obsahu.
